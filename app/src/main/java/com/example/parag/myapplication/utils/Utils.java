@@ -7,11 +7,11 @@ import android.util.Log;
  */
 public class Utils {
 
-    public void printSysout(String key, String value) {
+    public static void printSysout(String key, String value) {
         System.out.println(key+" "+value);
     }
 
-    public void printLogs(String key, String value) {
+    public static void printLogs(String key, String value) {
         Log.d(key,value);
     }
 }

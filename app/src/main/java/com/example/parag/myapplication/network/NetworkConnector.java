@@ -3,27 +3,27 @@ package com.example.parag.myapplication.network;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.example.parag.myapplication.Interfaces.ResponseStatusListener;
+import com.example.parag.myapplication.activities.MainActivity;
 import com.example.parag.myapplication.network.jsonparsers.JsonParser;
+import com.example.parag.myapplication.utils.Utils;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by parag on 9/7/15.
  */
 public class NetworkConnector extends AsyncTask<String, Void, String> {
 
-    private Context context;
     private String response = null;
-
-    public NetworkConnector(Context context) {
-        this.context = context;
-    }
 
     @Override
     protected void onPreExecute() {
@@ -62,7 +62,12 @@ public class NetworkConnector extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String aVoid) {
         super.onPostExecute(aVoid);
-        new JsonParser().parseJson(response);
 
+        ArrayList<JSONArray> jsonArrays = new JsonParser().parseJson(response);
+        if(jsonArrays != null) {
+            new MainActivity().onRequestSuccessful(jsonArrays);
+        } else {
+            new MainActivity().onRequestFailure();
+        }
     }
 }

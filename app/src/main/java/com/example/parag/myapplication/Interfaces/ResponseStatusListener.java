@@ -1,5 +1,7 @@
 package com.example.parag.myapplication.Interfaces;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 /**
@@ -7,7 +9,7 @@ import java.util.ArrayList;
  */
 public interface ResponseStatusListener {
 
-    public void onRequestSuccessful(ArrayList arrayList);
+    public void onRequestSuccessful(ArrayList<JSONArray> arrayList);
 
     public void onRequestFailure();
 

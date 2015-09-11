@@ -23,15 +23,11 @@ public class CustomAdapter extends BaseAdapter {
 
     private final String TAG_IMG_URL = "imgURL";
     private final String BASE_URL = "http://192.168.10.104/";
-
     private ArrayList<JSONArray> data;
-
     private LayoutInflater inflater;
     private Context context;
-
     private LinearLayout mainLinearLayout;
     private ImageView selectedImageView;
-
     private DisplayImageOptions options;
 
     public CustomAdapter(ArrayList<JSONArray> arrayList, LayoutInflater inflater,
@@ -44,7 +40,6 @@ public class CustomAdapter extends BaseAdapter {
 
         // Init DisplayOptions.
         initDisplayOptions();
-
     }
 
     private void initDisplayOptions() {
@@ -80,7 +75,7 @@ public class CustomAdapter extends BaseAdapter {
 
         final LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                                                                   ViewGroup.LayoutParams.WRAP_CONTENT));
+                ViewGroup.LayoutParams.WRAP_CONTENT));
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
 
         for (int j = 0; j < data.get(position).length(); j++) {
@@ -93,13 +88,13 @@ public class CustomAdapter extends BaseAdapter {
 
             try {
                 ImageLoader.getInstance().displayImage(BASE_URL + data.get(position).getJSONObject(j).getString(TAG_IMG_URL),
-                                                       imageView, options, null);
+                        imageView, options, null);
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
                             ImageLoader.getInstance().displayImage(BASE_URL + data.get(position).getJSONObject(counter).getString(TAG_IMG_URL),
-                                                                   selectedImageView, options, null);
+                                    selectedImageView, options, null);
                         } catch (Exception exception) {
                             exception.printStackTrace();
                         }

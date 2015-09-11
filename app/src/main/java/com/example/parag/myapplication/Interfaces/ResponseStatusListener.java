@@ -13,4 +13,6 @@ public interface ResponseStatusListener {
 
     public void onRequestFailure();
 
+    public void onRequestStarted();
+
 }

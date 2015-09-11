@@ -16,12 +16,20 @@ public class JsonParser {
 
     public ArrayList parseJson( String response) {
         try {
-            if (response != null) {
-                JSONObject jsonRootObject = new JSONObject(response);
-                Iterator<String> iterator = jsonRootObject.keys();
-                while(iterator.hasNext()) {
-                    JSONArray jsonArray = jsonRootObject.getJSONArray(iterator.next());
-                    jsonArrays.add(jsonArray);
+            JSONObject jsonRootObject = new JSONObject(response);
+            Iterator<String> iterator = jsonRootObject.keys();
+            while(iterator.hasNext()) {
+                JSONArray jsonArray = jsonRootObject.getJSONArray(iterator.next());
+                jsonArrays.add(jsonArray);
+                for (int i=0;i<jsonArray.length();i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    // TODO: Remove the hardcoded strings.
+
+                    String name = jsonObject.optString("name").toString();
+                    String image="http://192.168.10.104/"+jsonObject.optString("imgURL").toString();
+
+                    System.out.println("name"+name);
+                    System.out.println("Imageurl"+image);
                 }
             }
             return jsonArrays;

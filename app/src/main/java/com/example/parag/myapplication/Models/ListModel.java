@@ -1,12 +1,10 @@
 package com.example.parag.myapplication.Models;
 
-import android.widget.ImageView;
-
 /**
  * Created by parag on 9/7/15.
  */
 
-public class DataProvider {
+public class ListModel {
 
     private String name;
     private String imagePath;
